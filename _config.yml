@@ -24,9 +24,9 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Hello World
-email: your-email@domain.com
-author: GitHub User
+title: 부자를 꿈꾸는 블로그
+email: apoptosis1831@gmail.com
+author: apoptosis1831
 
 # Copyright setting
 # You can use any html code, currently below placeholders are available:
@@ -50,6 +50,11 @@ description: >- # this means to ignore newlines until "baseurl:"
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 favicon: "" # the favicon for your site
+
+#theme: jekyll-theme-yat
+#plugins:
+#  - jekyll-feed
+
 
 # Yat date format
 # refer to https://shopify.github.io/liquid/filters/date/ if you want to customize this
@@ -156,8 +161,8 @@ yat:
 # Page default value
 # defaults:
 #   home:
-#     heading: "HELLO WORLD"
-#     subheading: "hello world"
+#     heading: "Your awesome heading"
+#     subheading: "Your awesome subheading"
 #     banner: "Your image url"
 
 # Banner default settings

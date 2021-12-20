@@ -154,10 +154,10 @@ yat:
 #   - about.md
 
 # Page default value
-# defaults:
-#   home:
-#     heading: "Your awesome heading"
-#     subheading: "Your awesome subheading"
+ defaults:
+   home:
+     heading: "HELLO WORLD"
+     subheading: "hello world"
 #     banner: "Your image url"
 
 # Banner default settings

@@ -10,31 +10,31 @@ tags: [MySQL]
 
 
 
-## STUDY-MySQL
+## STUDY-MySQL (서버실행, DB편집)
 
 ### MySQL서버 실행
 
 (MySQL설치가 다 됐다는 가정하에 실행가능하다)
 
-> `mysql.server start`
+> mysql.server start
 
 
 
 ### MySQL초기 설정 방법
 
-> `mysql_secure_installation`
+> mysql_secure_installation
 
 
 
 ### MySQL서버 중단
 
-> `mysql.server stop`
+> mysql.server stop
 
 
 
 ### MySQL접속
 
-> `mysql -u root -p`
+> mysql -u root -p
 
 초기설정 과정중에서 설정했던 패스워드로 로그인 해야한다.
 
@@ -42,7 +42,7 @@ tags: [MySQL]
 
 ### Database생성
 
-> `CREATE DATABASE [DB명];`
+> CREATE DATABASE [DB명];
 
 CREATE DATABASE PROJECT_DB;
 
@@ -50,11 +50,11 @@ CREATE DATABASE PROJECT_DB;
 
 그리고 현재 어떤 DB들이 있는지 확인하기 위해선 아래 명령어를 입력해준다.
 
-> `shoe databases;`
+> show databases;
 
 해당 명령어로 DB편집할 DB명을 알아냈다면 아래 명령어로 DB를 선택할 수 있다.
 
-> `use [DB명];`
+> use [DB명];
 
 
 

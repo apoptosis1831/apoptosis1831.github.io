@@ -196,3 +196,6 @@ console.log(myArray); // ['dbbd', 'bb', index:1, input : 'cdbbdbsbz', groups : u
 
 어렵다.🥲
 
+
+
+참조 : [developer.mozilla.org](https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/Regular_Expressions)

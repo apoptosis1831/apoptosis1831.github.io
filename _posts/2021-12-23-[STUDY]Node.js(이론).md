@@ -12,7 +12,7 @@ tags: [Node.js]
 
 
 
-## ## STUDY-Node.js(이론)
+## STUDY-Node.js(이론)
 
 ### Node.js란? 자바스크립트의 런타임!
 

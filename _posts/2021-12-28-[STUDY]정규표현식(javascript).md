@@ -1,6 +1,6 @@
 ---
 layout: post
-title: STUDY-정규표현식(javascript)
+title: "[STUDY] 정규표현식(javascript)"
 subtitle: javascript에서 정규표현식
 categories: study
 tags: [javascript]
@@ -12,7 +12,7 @@ tags: [javascript]
 
 
 
-## STUDY-정규표현식(javascript)
+## [STUDY] 정규표현식(javascript)
 
 
 

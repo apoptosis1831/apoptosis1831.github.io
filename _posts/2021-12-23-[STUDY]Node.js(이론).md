@@ -1,6 +1,6 @@
 ---
 layout: post
-title: STUDY-Node.js(이론)
+title: "[STUDY] Node.js(이론)"
 subtitle: Node.js개념과 동작원리
 categories: study
 tags: [Node.js]
@@ -12,7 +12,7 @@ tags: [Node.js]
 
 
 
-## STUDY-Node.js(이론)
+## [STUDY]-Node.js(이론)
 
 ### Node.js란? 자바스크립트의 런타임!
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: STUDY-MySQL(서버실행, DB편집)
+title: "[STUDY] MySQL(서버실행, DB편집)"
 subtitle: MySQL서버 실행과 기초적인 DB편집
 categories: study
 tags: [MySQL]
@@ -10,7 +10,7 @@ tags: [MySQL]
 
 
 
-## STUDY-MySQL (서버실행, DB편집)
+## [STUDY] MySQL (서버실행, DB편집)
 
 ### MySQL서버 실행
 

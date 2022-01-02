@@ -1,6 +1,6 @@
 ---
 layout: post
-title: STUDY-MySQL(편집기 설치, CRUD)
+title: "[STUDY] MySQL(편집기 설치, CRUD)"
 subtitle: MySQL편집기 설치 및 CRUD로 데이터 편집
 categories: study
 tags: [MySQL]
@@ -11,7 +11,7 @@ tags: [MySQL]
 
 
 
-## STUDY-MySQL (편집기 설치, CRUD)
+## [STUDY] MySQL (편집기 설치, CRUD)
 
 
 

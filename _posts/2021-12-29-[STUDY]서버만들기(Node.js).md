@@ -59,9 +59,38 @@ B.js의 실행 결과는 `variable A from A.js in B.js`가 된다.
 * **require()** : 모듈을 불러온다.
 
   파일 뿐 아니라 디렉터리를 지정할 수도 있다
+  
+  ```javascript
+  const myModule = require('./module');
+  ```
+  module/ 디렉터리 하나만 require해주면 내부에 있는 index.js, calc.js, print.js 를 모두 사용할 수 있다.
 
 * **module.exports=프로퍼티 또는 exports.프로퍼티** : 모듈을 내보낸다.
 
   * module.exports=프로퍼티 : 하나의 값(원시타입, 함수, 객체)을 할당할 수 있다
   * exports.프로퍼티 : 메서드, 프로퍼티를 여러 개 내보낼 수 있다
 
+
+
+### 자주 쓰이는 내장 모듈과 객체
+
+Node.js에 포함되어 있는 기본 모듈 중 자주 사용되는 모듈과 객체를 정리해보자.
+
+`require`을 통해 해당 모듈을 불러오고, 모듈을 저장한 변수 뒤에 . 를 붙인 뒤 해당 모듈의 함수를 사용하면 된다.
+
+| 종류 | 메서드 |
+| --- | ---- |
+| global </br> : 전역 객체 | global.exports : 모듈 내보낼때 사용 </br> global.require : 모듈 불러들일 때 사용|
+| process </br> : 프로세스 객체 | process.argv : 실행 파라미터 출력 </br> process.execPath : 실행 파일 경로 </br> process.cwd : 현재 애플리케이션 경로 </br> process.version : node 경로 </br> porcess.memoryUsage : 현재 서버의 메모리 상태 </br> process.env : 여러 환경 설정 정보|
+|os</br> : 운영체제 모듈 | os.type, os.platform : 운영체제 확인 </br> os.arch : 서버 아키텍처를 구분 </br> os.networkInterface : 서버의 지역IP를 확인함 |
+|fs</br> : 파일시스템 모듈 | fs.readFile : 파일을 읽는다 </br> fs.exists : 파일을 확인한다 </br> fs.writeFile : 파일을 쓴다 |
+| utils </br> : 유틸 모듈 | utils.format : 파라미터로 입력한 문자열을 조합한다 |
+| url </br> : URL모듈 | url.parse : url을 객체화한다 </br> url.format : url을 직렬화 한다 |
+
+
+
+### 정리
+
+Node.js는 모듈 시스템을 기반으로 동작한다. 따라서 우리는 지금까지 모듈이 무엇이고 어떤 종류의 모듈이 있으며 모듈을 어떻게 사용하는지에 대해 알아봤다. 그리고 Node.js는 기본적으로 내장 모듈만을 가지고도 많은 기능으 사용할 수 있으므로 자주 쓰이는 내장 모듈에 대해 살펴보았다. 
+
+**module.exports**와 **require** 어떤 역할인지 중요하다.

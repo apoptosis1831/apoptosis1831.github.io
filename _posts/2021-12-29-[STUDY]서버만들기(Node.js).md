@@ -82,8 +82,8 @@ Node.js에 포함되어 있는 기본 모듈 중 자주 사용되는 모듈과 �
 | --- | ---- |
 | global<br />: 전역 객체 | global.exports : 모듈 내보낼때 사용<br /> global.require : 모듈 불러들일 때 사용|
 | process<br />: 프로세스 객체 | process.argv : 실행 파라미터 출력<br />process.execPath : 실행 파일 경로<br />process.cwd : 현재 애플리케이션 경로<br />process.version : node 경로<br />porcess.memoryUsage : 현재 서버의 메모리 상태<br />process.env : 여러 환경 설정 정보|
-|os</br> : 운영체제 모듈 | os.type, os.platform : 운영체제 확인<br />os.arch : 서버 아키텍처를 구분<br />os.networkInterface : 서버의 지역IP를 확인함 |
-|fs</br> : 파일시스템 모듈 | fs.readFile : 파일을 읽는다<br />fs.exists : 파일을 확인한다<br />fs.writeFile : 파일을 쓴다 |
+|os<br />: 운영체제 모듈 | os.type, os.platform : 운영체제 확인<br />os.arch : 서버 아키텍처를 구분<br />os.networkInterface : 서버의 지역IP를 확인함 |
+|fs<br />: 파일시스템 모듈 | fs.readFile : 파일을 읽는다<br />fs.exists : 파일을 확인한다<br />fs.writeFile : 파일을 쓴다 |
 | utils<br />: 유틸 모듈 | utils.format : 파라미터로 입력한 문자열을 조합한다 |
 | url<br />: URL모듈 | url.parse : url을 객체화한다<br />url.format : url을 직렬화 한다 |
 

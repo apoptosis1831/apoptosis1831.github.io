@@ -49,7 +49,7 @@ http.createServer((req, res) =>{
 
 #### 실행화면
 
-![simple_server2_실행화면](/assets/images/etc/stranger_things.jpg)
+![simple_server2_실행화면](/assets/images/etc/simple_server2.jpg)
 
 ### http 모듈로 서버 만들기-2
 

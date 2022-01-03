@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[STUDY] 서버 만들기(Node.js)"
+title: "[STUDY] 서버 만들기(Node.js)-1"
 subtitle: node.js모듈과 객체, 모듈로 서버 만들기
 categories: study
 tags: [Node.js]
@@ -14,7 +14,7 @@ typora-root-url: ../
 
 
 
-## [STUDY]-서버 만들기(Node.js)
+## [STUDY] 서버 만들기(Node.js)-1
 
 
 

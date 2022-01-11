@@ -93,34 +93,34 @@ app.listen(3000);
 
 > 1. express를 불러온다.
 >
->       const express = require('express');
+>       `const express = require('express');`
 >
->       const app = express();
-
+>       `const app = express();`
+>
 > 2. 포트를 설정해준다.
 >
->       app.set('port', process.env.PORT || 3000);
-
+>       `app.set('port', process.env.PORT || 3000);`
+>
 > 3. 공통적으로 사용하는 미들웨어를 장착해준다.
 >
->       app.use(~...) // 공통 미들웨어 morgan, cookie-parser, express.json, express.urlencoded, session 등
-
+>       `app.use(~...)` // 공통 미들웨어 morgan, cookie-parser, express.json, express.urlencoded, session 등
+>
 > 4. 라우터를 구성한다.
 >
->       app.get(~...)
-
+>       `app.get(~...)`
+>
 > 5. 404처리 미들웨어를 구성한다.
 >
->       app.get((req,res,next)=> res.status(404)...) // 404미들웨어
+>       `app.get((req,res,next)=> res.status(404)...)` // 404미들웨어
 // res.status상태 코드의 400 500번대를 너무 자세히 보여주면 해킹의 위협이 있다.
-
+>
 > 6. 오류 처리 미들웨어를 구성한다.
 >
->       app.use((err,req,res,next) => ...) // 오류 처리 미들웨어
-
+>       `app.use((err,req,res,next) => ...)` // 오류 처리 미들웨어
+>
 > 7. 생성된 서버가 포트를 리스닝한다.
 >
->       app.listen(app.get('port'));
+>       `app.listen(app.get('port'));`
 
 
 

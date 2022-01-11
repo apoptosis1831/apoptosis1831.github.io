@@ -321,3 +321,141 @@ http.createServer((req,res) => {
 세션 저장용 객체 하나를 session이라는 변수에 생성하고, 키 값을 sessKey라는 변수에 생성한다. (여기서는 날짜로 해주었는데, express-session 미들ㅇ웨어를 이용하면 임의의 키 값을 생성할 수 있게 된다.)
 
 session객체에 sessKey라는 키 값을 지정해주고 값을 {name='roadbook'}으로 할당한다. 쿠키값을 바로 보내주는 것이 아니라 세션 값으로 생성한 키 값을 넣어준다.
+
+그렇게 되면 쿠키값이 바로 뜨는 게 아니라 **세션 값**이 보여지게 된다. express-session이 없다면 cookies.session값을 이용해서 세션을 다루어야 하지만 **express-session**을 이용한다면 req객체에 session 속성이 부여되어 **req.session**을 통해 접근할 수 있게 된다.
+
+
+
+
+### 미들웨어 통합 테스트
+
+`npm install morgan cookie-parser express-session`
+
+명령어를 통해 필요한 모듈들을 한 번에 설치할 수 있다.
+
+```javascript
+const express = require('express');
+const morgan = require('morgan');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const app = express();
+
+/* 포트 설정 */
+app.set('port', process.env.PORT || 8080);
+
+/* 공통 미들웨어 */
+app.use(express.static(__dirname + '/public'));
+app.use(morgan('dev'));
+app.use(cookieParser('secret@1234')); // 암호화된 쿠키를 사용하기 위한 임의의 문자 전송
+app.use(session({
+    secret: 'secret@1234', // 암호화
+    resave: false, // 새로운 요청시 세션에 변동 사항이 없어도 다시 저장할지 설정
+    saveUninitialized: true, // 세션에 저장할 내용이 없어도 저장할지 설정
+    cookie: { // 세션 쿠키 옵션 들 설정 httpOnly, expires, domain, path, secure, sameSite
+        httpOnly: true, // 로그인 구현시 필수 적용, javascript로 접근 할 수 없게 하는 기능
+    },
+    // name: 'connect.sid' // 세션 쿠키의 Name지정 default가 connect.sid
+}));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+/* 라우팅 설정 */
+app.get('/', (req, res) => {
+    if (req.session.name) {
+        const output = `  
+                <h2>로그인한 사용자님</h2><br>  
+                <p>${req.session.name}님 안녕하세요.</p><br>  
+            `
+        res.send(output);
+    } else {
+        const output = `  
+                <h2>로그인하지 않은 사용자입니다.</h2><br>  
+                <p>로그인 해주세요.</p><br>  
+            `
+        res.send(output);
+    }
+});
+
+app.get('/login', (req, res) => { // 실제 구현시 post
+    console.log(req.session);
+    // 쿠키를 사용할 경우 쿠키에 값 세팅 
+    // res.cookie(name, value, options)
+    // 세션 쿠키를 사용할 경우
+    req.session.name = '로드북';
+    res.end('Login Ok')
+});
+
+app.get('/logout', (req,res) =>{
+    res.clearCookie('connect.sid'); // 세션 쿠키 삭제
+    res.end('Logout OK');
+});
+
+/* 서버와 포트 연결.. */
+app.listen(app.get('port'), ()=>{
+    console.log(app.get('port'), '번 포트에서 서버 실행중..')
+});
+```
+
+![console화면](/assets/images/etc/console.jpg)
+
+위 코드 실행하면 위에 이미지처럼 콘솔에 로그가 찍힌다. 이는 morgan을 장착해주었기 때문에 요청 메서드, url, 상태코드, 응답 속도 등의 로그가 표시된 것이다.
+
+/login 페이지로 접속 시 쿠키 세션을 사용해 req.session.name이라는 값을 넣어주었다. 브라우저를 닫을 때까지 req.session.name 값은 유효하다.
+
+안전하게 쿠키를 전송하기 위해 쿠키를 서명해야 하기 때문에 secret 값이 필요하다. cookie-parser의 인자 값과 쿠키 세션의 값을 동일하게 설정해주어야 한다.
+
+express-session을 사용하지 않고 세션을 구현하면 따로 `const session = {};` 과 같이 세션 정보를 저장할 공간을 따로 마련해주어야 한다. 하지만 express-session을 사용해서 **req.session**을 가지게 되면, req.session은 **방금 요청을 보낸 사람의 고유한 저장 공간** 같은 곳으로 사용할 수 있다. `req.session.name='로드북'` 이란 값을 넣어주었다면 요청을 보낸 사람의 req.session.name만 '로드북' 이라는 값을 가지게 된다.
+
+![first화면](/assets/images/etc/first.jpg)
+
+> localhost:8080 으로 처음 접속했을 때 화면
+
+
+
+![login_ok화면](/assets/images/etc/login_ok.jpg)
+
+> localhost:8080/login 으로 접속했을 때 화면
+
+
+
+![login화면](/assets/images/etc/login.jpg)
+
+> 로그인 url 접속 후 localhost:8080/ 으로 접속했을 때 화면
+
+
+
+![logout화면](/assets/images/etc/logout_ok.jpg)
+
+> localhost:8080/logout 페이지 접속 화면
+
+
+
+localhost:8080/ 페이지로 접속했을 때 req.session.name값이 있으면 (/login페이지로 먼저 접속해 req.session.name 값이 생성되어 있을 경우) "로그인한 사용자님" 이라는 제목을 출력하고,
+
+req.session.name 값이 없다면 "로그인하지 않은 사용자입니다"라는 제목을 출력한다.
+
+위의 코드에서 사용된 미들웨어(morgan, cookie-parser 등) 에서는 next()가 필요 없다. 이들은 모두 next()가 내부에 저장되어 있기 때문에 자동으로 다음 미들웨어로 넘어간다. 단 static의 경우 next()가 없기 때문에 static을 거쳐야 하는 router라면 공통 미들웨어의 순서를 잘 설정해주어야 한다.
+
+
+
+### 정리
+
+1. Node.js는 **모듈 시스템**을 사용한다.
+2. 모듈은 부품과 같은 역할을 하고 여러 모듈을 조립해서 하나의 앱을 만들 수 있다.
+3. 모듈을 내보낼 때는 `exports`, 불러올 땐 `require`
+4. 모듈의 종류에는 기본 모듈, 확장 모듈, 일반 모듈, 네이티브 모듈, 지역 모듈, 전역 모듈이 있다.
+5. Node.js는 global객체를 통해 전역 객체를 사용하고, exports, require, module 등은 global 객체에 포함되어 있다.
+6. 기본 모듈에서 자주 쓰이는 모듈에는 global, process, os, utils, fs, url 등이 있다.
+7. http 모듈을 사용해서 request 와 require을 구현할 수 있다.
+8. `http.createServer()`로 서버를 만드는데 필요한 인자로는 `request`, `response`, `콜백 함수`가 있다.
+9. `express 모듈`은 http와 fs 모듈을 사용하여 구현을 더 간단하게 만들어주는 Node.js의 백엔드 프레임워크다.
+10. express 모듈은 **connect컴포넌트** 기반으로 동작하며 connect 컴포넌트는 **미들웨어**를 뜻한다. 미들웨어는 기본적인 서비스 외에 다른 부가적인 서비스를 이용할 수 있게 해주는 소프트웨어다.
+11. **http 요청 메서드**에는 **GET, POST, PUT, PATCH, DELETE** 등이 있다.
+12. express에서 미들웨어는 `app.use()` 함수를 통해 사용한다.
+13. **static 파일**이란 정적 파일을 의미하며 css, script, 이미지 등과 같이 내용이 고정되어 응답할 때 별도의 처리가 피료 없는 파일을 말한다.
+14. express에서 **라우터**는 일종의 미들웨어이고 요청 uri에 따라 어떤 응답을 보내주어야 하는지 결정한다.
+15. 자주 사용하는 미들웨어로는 **static, morgan, cookie-parser, express-session** 등이 있다.
+
+
+
+참조 : Node.js로 서버 만들기 (저자 박민경)

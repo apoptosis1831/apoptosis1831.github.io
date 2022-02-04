@@ -4,6 +4,7 @@ title: "[STUDY] React 기본 -1 (react정의,component,create-react-app)"
 subtitle: react의 정의, component, create-react-app
 categories: study
 tags: [react]
+typora-root-url: ../
 
 
 
@@ -51,6 +52,13 @@ npm을 이용해 create react app을 설치하여 간단하게 react app을 만�
 >
 > `npm run start` : react 실행
 
+
+
+![실행결과](/assets/images/etc/create-react-app-1.jpg)
+
+실행결과 위와 같은 웹 하나가 띄어진다
+
+
 #### 만들어진 디렉터리 구조
 
 - public > **index.html** : `<body>안에 <div id="root"></div>`
@@ -64,6 +72,8 @@ npm을 이용해 create react app을 설치하여 간단하게 react app을 만�
 - **public 폴더** : create-react-app에서 npm run start 했을때 파일을 찾는 document root 디렉터리이다
 
 - **semantic tag** : 웹페이지는 대부분 header, navigator, foot 등으로 나누어져 있고 이걸 나누는 태그를 시맨틱 태그라고 부른다
+
+![react app 디렉터리구조](/assets/images/etc/react-app-directory.jpg)
 
 
 

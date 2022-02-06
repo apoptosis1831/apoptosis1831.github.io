@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "[STUDY] React 기본 -3 () [작성중]"
-subtitle: 
+subtitle: [작성중]
 categories: study
 tags: [react]
 typora-root-url: ../

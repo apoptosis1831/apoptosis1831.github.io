@@ -766,7 +766,9 @@ html {
     }
   }
 }
-
+.hidden {
+  display: none;
+}
 .left-vsplit:before {
   content: "";
   display: inline-block;

@@ -6,16 +6,42 @@
   {%- assign field = include.field -%}
 {%- endif -%}
 
+
+{% assign LIST_PREFIX = "l_" %}
+{% assign group_index = 0 %}
+
 <div class="page-segments">
   <ul class="page-segments-list">
     {% for key in keys %}
     <h2 id="{{ key }}" class="segment-name">{{ key }}</h2>
       {% assign items = site.posts | where: field, key %}
+      {% assign index = 0 %}
       {% for item in items %}
+        {% if index == 10 %}
+        <div id="{{ LIST_PREFIX }}{{ group_index }}" class="hidden">
+        <ul class="page-segments-list">
+        {% endif %}
         {% if item != nil %}
         <li> {% include views/post-item.html %} </li>
         {% endif %}
+        {% assign index = index | plus : 1 %}
       {% endfor %}
+      {% if index > 11 %}
+      </ul>
+      </div>
+      <li> 
+        <button type="button" onclick="document.querySelector('#{{ LIST_PREFIX }}{{ group_index }}').classList.remove('hidden')">
+          read more
+        </a>
+      </li>
+      {% endif %}
+    {% assign group_index = group_index | plus: 1 %}
     {% endfor %}
   </ul>
 </div>
+
+<script>
+const click = (id) => {
+  document.querySelector(`#${id}`).classList.remove('hidden');
+}
+</script>

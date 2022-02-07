@@ -224,7 +224,7 @@ var bindTest2 = bindTest.bind(obj);
 
 그렇기 때문에 `this.setState({})`형식으로 state값을 변경할 수 있다.
 
-### 컴포넌트 이벤트 만들기
+### 컴포넌트 이벤트 만들기-1
 
 * App.js
 
@@ -271,9 +271,139 @@ Subject 컴포넌트를 사용하여 링크 클릭했을 때 이벤트 안에 �
 
 App.js의 Subject태그 안에 OnChangePage함수를 작성하여 이 함수는 props형태로 Subject.js에 전달된다. 그리고 Subject.js에서 props의 onChangePage()함수를 호출해준다.
 
+### 컴포넌트 이벤트 만들기-2
+
+* App.js
+
+```javascript
+import './App.css';
+import React,{Component} from 'react';
+import Content from './components/Content';
+import Subject from './components/Subject';
+import TOC from './components/TOC';
+
+
+class App extends Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      mode : 'welcome',
+      selected_content_id : 2,
+      subject: {title: 'WEB', sub: "World Wide Web"},
+      welcome: {title: 'Welcome', desc : 'Hello React!!'},
+      contents: [
+        {id:1, title: 'HTML', desc:'HTMI is HyperTextMarkupLanguage'},
+        {id:2, title: 'CSS', desc:'CSS is for design'},
+        {id:3, title: 'Javascript', desc:'Javascript is for interactive'}
+      ]
+    }
+  }
+  render(){
+    var _title, _desc=null;
+    if(this.state.mode === 'welcome'){
+      _title = this.state.welcome.title;
+      _desc=this.state.welcome.desc;
+    } else if(this.state.mode === 'read'){
+      var i=0;
+      while(i<this.state.contents.length){
+        var data = this.state.contents[i];
+        if(data.id === this.state.selected_content_id){
+          _title=data.title;
+          _desc = data.desc;
+          break;
+        }
+        i=i+1;
+      }
+    }
+    return(
+      <div className="App">
+        <Subject
+        title={this.state.subject.title}
+        sub={this.state.subject.sub}
+        onChangePage = {function(){
+          this.setState({mode:'welcome'});
+        }.bind(this)}
+        ></Subject>
+        <TOC
+        onChangePage = {function(id){
+          this.setState({
+            mode: 'read',
+            selected_content_id : Number(id)
+          });
+        }.bind(this)}
+        data={this.state.contents}></TOC>
+        <Content
+        title={_title}
+        desc={_desc}
+        ></Content>
+      </div>
+    );
+  }
+}
+
+
+export default App;
+```
+
+* TOC.js
+```javascript
+import React,{Component} from 'react';
+
+class TOC extends Component{
+    render(){
+      var lists=[];
+      var data = this.props.data;
+      var i=0;
+      while(i<data.length){
+        lists.push(<li key={data[i].id}>
+          <a href={"/content"+data[i].id}
+          onClick = {function(id, e){
+            e.preventDefault();
+            this.props.onChangePage(id);
+          }.bind(this, data[i].id)}
+          >
+            {data[i].title}
+          </a>
+        </li>)
+        i=i+1;
+      }
+      return(
+        <nav>
+          <ul>
+            {lists}
+          </ul>
+        </nav>
+      );
+    }
+  }
+
+  export default TOC;
+  ```
+  
+TOC.js에서 a태그를 변경해주었다. onClick했을때 function을 추가하여 this.props.onChangePage(App.js에서 TOC태그 안에 작성해준 이벤트함수)를 호출해주었다.
+
+여기서 App.js의 TOC태그 안에 **onChangePage는 id값을 입력**받아 **state의 mode값과 selected_content_id값을 변경**시켜주는 함수이다. (각각 'read' / id 로 변경해준다)
+
+App.js에서 render함수에서 mode가 read일때 i 인덱스로 while무을 돌면서 state의 contents의 i번째 내용과 selected_content_id가 같으면 _title과 _desc를 state의 값들로 수정해준다.
+
+onClick함수에서 속성을 이용하지 않고 bind의 두번째 인자를 함수의 첫번째 매개변수로 넣어줌으로써 id값을 전달할 수 있다.
+
+만약 `data-id = {data[i].id}`로 지정해주면 function(e)에서 **e 안에 target > dataset > id** 로 data-id에 접근이 가능하다. (아래 코드 참고)
+
+```javascript
+onClick{function(e){
+    e.preventDefault();
+    this.props.onChangePage(e.target.dataset.id);
+}.bind(this)}
+```
+
+이렇듯 data값을 함수에서 사용하기 위해서 두가지 방법을 적용시킬 수 있다.
+
 
 
 
 ---
 
-참조 : 
+### 참조 
+
+- [인프런 생활코딩 강의](https://www.inflearn.com/course/react-%EC%83%9D%ED%99%9C%EC%BD%94%EB%94%A9/dashboard)

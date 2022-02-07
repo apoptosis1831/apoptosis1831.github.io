@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "[STUDY] React 기본 -3 () [작성중]"
-subtitle: [작성중]
+title: "[STUDY] React 기본 -3 (이벤트 설치, bind함수, setState함수)"
+subtitle: 이벤트 설치, bind함수, setState함수
 categories: study
 tags: [react]
 typora-root-url: ../
@@ -11,7 +11,7 @@ typora-root-url: ../
 
 ---
 
-## [STUDY] React 기본 -3 ()
+## [STUDY] React 기본 -3 (이벤트 설치, bind함수, setState함수)
 
 ### 역동성 만들기
 

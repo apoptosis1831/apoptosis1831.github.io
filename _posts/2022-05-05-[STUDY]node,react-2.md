@@ -109,8 +109,6 @@ userSchema.pre('save', function (next) { // 새로 저장할때 마다 작동
 ![mongoDB](/assets/images/etc/mongoDB_result.jpg "암호화 후 mongoDB 화면")
 
 
-
-
 ---
 
 참조

@@ -95,7 +95,7 @@ ORDER BY HOUR(DATETIME);
 
 ### 입양 시각 구하기(2) 문제
 
-0시부터 23시까지 각 시간대별로 입양이 몇건이나 발생했는지 조회하는 SQL문(결과는 시간대 순으로 정렬)은 아래와 같다.
+> 0시부터 23시까지 각 시간대별로 입양이 몇건이나 발생했는지 조회하는 SQL문(결과는 시간대 순으로 정렬)은 아래와 같다.
 
 ```mysql
 WITCH RECURSIVE Y as(
@@ -138,7 +138,7 @@ ORDER BY ANIMAL_ID;
 
 ### JOIN
 
-입양을 간 기록은 있는데, 보호소에 들어온 기록이 없는 동물의 ID와 이름을 ID순으로 조회하는 SQL문은 아래와 같다.
+> 입양을 간 기록은 있는데, 보호소에 들어온 기록이 없는 동물의 ID와 이름을 ID순으로 조회하는 SQL문은 아래와 같다.
 
 ```mysql
 SELECT ANIMAL_OUTS.ANIMAL_ID, ANIMAL_OUTS.NAME
@@ -154,7 +154,7 @@ WHERE ANIMAL_INS.ANIMAL_ID IS NULL;
 
 ### JOIN, WHERE 조합 쿼리
 
-보호소에 들어올 당시에는 중성화 되지 않았지만, 보호소를 나갈 당시에는 중성화된 동물의 아이디와 생물 종, 이름을 조회하는 아이디 순으로 조회하는 SQL문은 아래와 같다.
+> 보호소에 들어올 당시에는 중성화 되지 않았지만, 보호소를 나갈 당시에는 중성화된 동물의 아이디와 생물 종, 이름을 조회하는 아이디 순으로 조회하는 SQL문은 아래와 같다.
 
 ```mysql
 SELECT ANIMAL_OUTS.ANIMAL_ID, ANIMAL_OUTS.ANIMAL_TYPE, ANIMAL_OUTS.NAME
@@ -180,7 +180,7 @@ ORDER BY ANIMAL_ID;
 
 ### CASE WHEN 문으로 조건에 따라 출력 다르게 하기
 
-중성화된 동물은 `SEX_UPON_INTAKE` 컬럼에 'Neutered' 떠는 'Spayed'라는 단어가 들어가 있다. 동물의 아이디와 이름, 중성화 여부를 아이디 순으로 조회하려고 하며 이때 중성화가 되어 있다면 'O', 아니면 'X'라고 표시한다.
+> 중성화된 동물은 `SEX_UPON_INTAKE` 컬럼에 'Neutered' 떠는 'Spayed'라는 단어가 들어가 있다. 동물의 아이디와 이름, 중성화 여부를 아이디 순으로 조회하려고 하며 이때 중성화가 되어 있다면 'O', 아니면 'X'라고 표시한다.
 
 ```mysql
 SELECT ANIMAL_ID, NAME,
@@ -217,6 +217,34 @@ ORDER BY ANIMAL_ID;
 
 ![DATE_FORMAT 구분기호](/assets/images/etc/date_format.jpg)
 
+### UION으로 여러 테이블의 값 추출하기
+
+`SELECT * [테이블명1] UNION SELECT * [테이블명2]` : 두 테이블에서 같은 성격의 값을 한번의 쿼리로 추출한다. 이때 주의할 점은 `대응하는 필드의 이름이 같아야 한다. (다르면 AS를 통해 같게 만든다)` 그리고 `대응되는 각 필드의 타입이 같아야 한다.`
+
+여기서 중복을 삭제한 유일한 정보만 추출할 수도, 중복되더라도 모든 값을 추출할 수도 있다.
+
+- 중복되지 않은 유일한 정보를 추출할 땐
+
+  일반적으로 `UNION`을 상해서 각 필드의 이름을 같게 맞추어 쿼리를 작성한다.
+
+  ```mysql
+  (SELECT NAME, EMAIL FROM TABLE1)
+  UNION
+  (SELECT STUDENT_NAME AS NAME STUDENT_EMAIL AS EMAIL FROM TABLE2)
+  ```
+
+  `DISTINCT` 함수와 같은 효과를 준다.
+
+- 중복 값 포함하여 모든 값 추출할 땐
+
+  `UNION ALL`을 사용한다.
+
+  ```mysql
+  (SELECT NAME, EMAIL FROM TABLE1)
+  UNION ALL
+  (SELECT STUDENT_NAME AS NAME STUDENT_EMAIL AS EMAIL FROM TABLE2)
+  ```
+
 
 
 ---
@@ -226,6 +254,8 @@ ORDER BY ANIMAL_ID;
 [구글링 블로그1](https://yoo-hyeok.tistory.com/98)
 
 [구글링 블로그2](https://devjhs.tistory.com/89)
+
+[구글링 블로그3](https://blog.bsmind.co.kr/377)
 
 [프로그래머스 문제](https://programmers.co.kr/learn/challenges)
 

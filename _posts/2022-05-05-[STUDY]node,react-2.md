@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "[STUDY] node, 리액트 - 2"
-subtitle: 
+subtitle: bcrypt 이용해서 비밀정보 감추기
 categories: study
 tags: [react]
 typora-root-url: ../
@@ -101,6 +101,8 @@ userSchema.pre('save', function (next) { // 새로 저장할때 마다 작동
                 next()
             })
         })
+    } else {
+        next()
     }
 
 })

@@ -17,7 +17,7 @@
   (function() {
     var sw = document.getElementById('theme-switch');
     var html = document.getElementsByTagName('html')[0];
-    var nightModeOption = ('{{ night_mode }}' || 'auto').toLowerCase();
+    var nightModeOption = 'manual';//('{{ night_mode }}' || 'auto').toLowerCase();
     var storage = nightModeOption === 'manual'
         ? localStorage
         : sessionStorage;

@@ -169,20 +169,6 @@ MainImage.js에서 가져온 MainImage에 대표 영화 정보를 넣어주기 �
 
 또한 MainImage로 영화 제목과 영화 설명을 넘겨 주기 위해 `original_title`, `overview` 속성도 함께 넣어준다.
 
-```javascript
-<div style = {{
-            background : `linear-gradient(to bottom, rgba(0,0,0,0)
-            39%,rgba(0,0,0,0) 
-            41%,rgba(0,0,0,0.65) 
-            100%),
-            url('${props.image}'), #1c1c1c`,
-            height: '500px',
-            backgroundSize: '100%, cover',
-            backgroundPosition: 'center, center',
-            width: '100%',
-            position: 'relative'
-        }}>
-```
 
 MainImage.js 에서는 props.image 로 만들어둔 image url 을 넣어주기만 하면된다.
 

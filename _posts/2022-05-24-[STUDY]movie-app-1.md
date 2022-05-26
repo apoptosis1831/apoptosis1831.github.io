@@ -15,7 +15,7 @@ typora-root-url: ../
 
 ### boiler-plate 와 mongoDB 연결
 
-우선 boiler-plate를 사용하는 이유가 뭘까? 영화의 정보를 가져오고 그 정보를 이용해서 웹 개발하는 것에 집중하기 위해 기본적인 회원가입이나 로그인 기능이 구현된 boiler-plate 을 가져와서 프로젝트를 생성한다.
+우선 boiler-plate를 사용하는 이유가 뭘까? 영화의 정보를 가져오고 그 정보를 이용해서 웹 개발하는 것에 집중하기 위해 기본적인 회원가입이나 로그인 기능이 구현된 boiler-plate 을 가져와서 프로젝트를 생성한다. 
 
 인프런 강의해주시는 john ahn 님의 깃허브에 올려진 boiler-plate 를 다운로드 받는다. (https://github.com/jaewonhimnae/boilerplate-mern-stack)
 

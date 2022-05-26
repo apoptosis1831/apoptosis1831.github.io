@@ -138,7 +138,7 @@ function MainImage(props){
             backgroundPosition: 'center, center',
             width: '100%',
             position: 'relative'
-        }} {% endrwa %}>
+        }} {% endraw %}>
             <div>
                 <div style = {{ position : 'absolute', maxWidth : '500px', bottom: '2rem', marginLeft: '2rem'}}>
 

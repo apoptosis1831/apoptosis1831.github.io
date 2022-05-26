@@ -30,13 +30,11 @@ server > Config > dev.js 생성해서 로컬에서 작업하는 development환�
 
 이때 API URL은 아래와 같은 형식으로 사용 가능하다.
 
-![api url](/assets/images/etc/movie-app/themoviedb_url_info.jpg)
 
 여기서 URL의 공통 부분이 있다. 바로 <https://api.themoviedb.org/3/>
 
 image URL 은 아래와 같은 형식으로 맞춰 사용 가능하다.
 
-![api image url](/assets/images/etc/movie-app/themoviedb_url_info.jpg)
 
 여기서 공통 URL 부분은 <http://image.tmdb.org/t/p/> 이다.
 
@@ -75,8 +73,6 @@ return (
     )
 ```
 
-![landingPage-1](/assets/images/etc/movie-app/landingPage-1.jpg)
-
 실행결과는 이렇게 나온다.
 
 ```javascript
@@ -96,10 +92,6 @@ return (
 `endpoint` 는 movie의 정보를 가져올 수 있는 url 을 정의해둔 것이다. 이때 page=1 로 첫번째 페이지만 가져오게 설정해둔다.
 
 `fetch 함수`를 이용해서 endpoint를 매개변수로 넣어주면 현재 인기 있는 영화 정보를 가져오게 된다. 이 정보를 console.log로 찍어서 살펴보자.
-
-![response-1](/assets/images/etc/movie-app/response_console-1.jpg)
-
-![response-2](/assets/images/etc/movie-app/response_console-2.jpg)
 
 우선 results는 20개가 있다. 이는 가장 인기 있는 영화 20위까지 정보를 가져온다는 것을 의미한다. 이러한 정보들은 useState를 이용하여 `state`에 넣어준다.
 
@@ -207,11 +199,10 @@ MainImage.js 에서는 props.image 로 만들어둔 image url 을 넣어주기�
 
 이때 landingPage 쪽 rendering 부분에선 위의 코드처럼 작성해 줘야 하는ㄴ데 그 이유는 backdrop_path 에 접근하기 위해선 우선적으로 endpoint로 url 을 가져온 MainMovieImage state가 있어야 하는데 이를 가져오기 전에 페이지를 먼저 rendering 하기 때문에 오류가 나게된다. 이를 해결하기 위해 위의 코드처럼 `{MainMovieImage && ~~}` 로 코드를 작성해주는데, 이는 MainMpvieImage가 있을때에만 뒤의 코드를 실행한다는 뜻이다.
 
-![landingPage-1-compelete](/assets/images/etc/movie-app/landingPage-1-compelete.jpg)
-
-
 실행결과는 위와 같다.
 
 ---
 
 참조
+
+- [인프런 강의 - 영화 사이트 만들기](https://www.inflearn.com/course/%EB%94%B0%EB%9D%BC%ED%95%98%EB%A9%B0-%EB%B0%B0%EC%9A%B0%EB%8A%94-%EB%85%B8%EB%93%9C-%EB%A6%AC%EC%95%A1%ED%8A%B8-%EC%98%81%ED%99%94%EC%82%AC%EC%9D%B4%ED%8A%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/dashboard)

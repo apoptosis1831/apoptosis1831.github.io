@@ -32,13 +32,13 @@ server > Config > dev.js 생성해서 로컬에서 작업하는 development환�
 
 ![api url](/assets/images/etc/movie-app/themoviedb_url_info.jpg)
 
-여기서 URL의 공통 부분이 있다. 바로 `https://api.themoviedb.org/3/`
+여기서 URL의 공통 부분이 있다. 바로 <https://api.themoviedb.org/3/>
 
 image URL 은 아래와 같은 형식으로 맞춰 사용 가능하다.
 
 ![api image url](/assets/images/etc/movie-app/themoviedb_url_info.jpg)
 
-여기서 공통 URL 부분은 `http://image.tmdb.org/t/p/` 이다.
+여기서 공통 URL 부분은 <http://image.tmdb.org/t/p/> 이다.
 
 그리고 이러한 공통 url 들은 config.js에 따로 정의해둬서 재사용성의 편의를 높여준다.
 

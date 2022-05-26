@@ -123,24 +123,9 @@ const [Movies, setMovies] = useState([]) // 배열 형태의 state
 
 url에서 가져온 해당 정보들을 state에 넣어준 뒤 landingPage > Sections > `MainImage.js` 파일을 생성하여 landingPage의 상위 부분에 들어갈 `대표 영화`를 만들어준다.
 
-```javascript
-import React from 'react';
-function MainImage(props){
-    return(
-        <div 
-            <div>
-                <div style = {{ position : 'absolute', maxWidth : '500px', bottom: '2rem', marginLeft: '2rem'}}>
+![code-mainImage](/assets/images/etc/movie-app/code-mainImage.png)
 
-                    <h2 style={{color:'white'}}> {props.title} </h2>
-                    <p style = {{color : 'white', fontSize : '1rem'}}> {props.text} </p>
-                </div>
-            </div>
-        </div>
-    )
-}
-
-export default MainImage;
-```
+jekyll의 Liquid Exception 에러로 build가 안되기에 사진으로 코드를 첨부한다.
 
 이미지 부분, 그리고 그 안에 영화 제목인 title, 영화 설명인 text 를 만들어준다. 여기서 landingPage.js 에서는 `MainMovieImage라는 state`를 만들어준다.
 
@@ -168,6 +153,9 @@ MainMovieImage에는 response.results[0] 즉 제일 인기 많은 movie의 데�
 MainImage.js에서 가져온 MainImage에 대표 영화 정보를 넣어주기 위해 `image url`을 작성하는 과정이 필요하다. 이는 state의 수많은 데이터 중 `backdrop_path` 속성을 통해 완성해줄 수 있다.
 
 또한 MainImage로 영화 제목과 영화 설명을 넘겨 주기 위해 `original_title`, `overview` 속성도 함께 넣어준다.
+
+![code-mainImage-2](/assets/images/etc/movie-app/code-mainImage2.png)
+
 
 
 MainImage.js 에서는 props.image 로 만들어둔 image url 을 넣어주기만 하면된다.

@@ -17,7 +17,7 @@ typora-root-url: ../
 
 우선 boiler-plate를 사용하는 이유가 뭘까? 영화의 정보를 가져오고 그 정보를 이용해서 웹 개발하는 것에 집중하기 위해 기본적인 회원가입이나 로그인 기능이 구현된 boiler-plate 을 가져와서 프로젝트를 생성한다.  
 
-인프런 강의해주시는 john ahn 님의 깃허브에 올려진 boiler-plate 를 다운로드 받는다. (https://github.com/jaewonhimnae/boilerplate-mern-stack)
+인프런 강의해주시는 john ahn 님의 깃허브에 올려진 boiler-plate 를 다운로드 받는다. [boiler-plate github 주소](https://github.com/jaewonhimnae/boilerplate-mern-stack)
 
 서버와 클라이언트에서 package.json에 정의된 라이브러리, dependency를 다운로드 받는다. 이때 node는 다운 받아져 있는 상태여야 하는데 이는 `node -v` 명령어로 확인 가능하다. node 다운로드 된 게 확인 됐으면 `npm install` 로 라이브러리들을 설치해준다. (서버, 클라이언트 모두 install)
 
@@ -26,19 +26,19 @@ server > Config > dev.js 생성해서 로컬에서 작업하는 development환�
 
 ### TheMovieDB API
 
-https://www.themoviedb.org/ 접속 후 API 사용하기 위한 `API_KEY` 를 받아야 한다. 이를 위해 로그인 과정이 필요하다. 로그인 후 설정 > API 메뉴에서 새로운 API KEY를 생성해준다.
+[themoviedb.org](https://www.themoviedb.org/) 접속 후 API 사용하기 위한 `API_KEY` 를 받아야 한다. 이를 위해 로그인 과정이 필요하다. 로그인 후 설정 > API 메뉴에서 새로운 API KEY를 생성해준다.
 
 이때 API URL은 아래와 같은 형식으로 사용 가능하다.
 
 ![api url](/assets/images/etc/movie-app/themoviedb_url_info.jpg)
 
-여기서 URL의 공통 부분이 있다. 바로 https://api.themoviedb.org/3/
+여기서 URL의 공통 부분이 있다. 바로 `https://api.themoviedb.org/3/`
 
 image URL 은 아래와 같은 형식으로 맞춰 사용 가능하다.
 
 ![api image url](/assets/images/etc/movie-app/themoviedb_url_info.jpg)
 
-여기서 공통 URL 부분은 http://image.tmdb.org/t/p/ 이다.
+여기서 공통 URL 부분은 `http://image.tmdb.org/t/p/` 이다.
 
 그리고 이러한 공통 url 들은 config.js에 따로 정의해둬서 재사용성의 편의를 높여준다.
 
